@@ -14,10 +14,10 @@ EXPOSE 3000
 ADD ./scripts/docker-startup.sh /usr/bin/semaphore-startup.sh
 ADD https://releases.ansible.com/ansible/ansible-$ANSIBLE_VERSION.tar.gz /tmp/
 RUN tar xvz -C /tmp -f /tmp/ansible-$ANSIBLE_VERSION.tar.gz
-RUN mkdir /etc/semaphore
-RUN cp /tmp/ansible-$ANSIBLE_VERSION/contrib/inventory/$DIGITALOCEAN.* /etc/ansible/
-RUN chmod 644 /etc/ansible/$DIGITALOCEAN.ini
-RUN chmod +x /etc/ansible/$DIGITALOCEAN.py
+RUN mkdir /etc/ansible
+RUN cp /tmp/ansible-$ANSIBLE_VERSION/contrib/inventory/* /etc/ansible/
+RUN chmod 644 /etc/ansible/*.ini
+RUN chmod +x /etc/ansible/*.py
 RUN chmod +x /usr/bin/semaphore-startup.sh
 
 ENTRYPOINT ["/sbin/tini", "--"]
