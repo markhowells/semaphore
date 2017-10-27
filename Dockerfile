@@ -14,8 +14,7 @@ EXPOSE 3000
 ADD ./scripts/docker-startup.sh /usr/bin/semaphore-startup.sh
 ADD https://releases.ansible.com/ansible/ansible-$ANSIBLE_VERSION.tar.gz /tmp/
 RUN tar xvz -C /tmp -f /tmp/ansible-$ANSIBLE_VERSION.tar.gz
-RUN tar xv -C /tmp/dist -f /tmp/dist/ansible-$ANSIBLE_VERSION.tar
-RUN cp /tmp/dist/contrib/inventory/$DIGITALOCEAN/* /etc/ansible
+RUN cp /tmp/ansible-$ANSIBLE_VERSION/contrib/inventory/$DIGITALOCEAN/* /etc/ansible
 RUN chmod 644 /etc/ansible/$DIGITALOCEAN.ini
 RUN chmod +x /etc/ansible/$DIGITALOCEAN.py
 RUN chmod +x /usr/bin/semaphore-startup.sh
