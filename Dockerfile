@@ -2,7 +2,7 @@ FROM alpine:3.5
 
 ENV SEMAPHORE_VERSION="2.4.1" SEMAPHORE_ARCH="linux_amd64"
 
-RUN apk update && apk add --no-cache git py2-pip mysql-client curl openssh-client tini build-devel && \
+RUN apk add --no-cache git py2-pip mysql-client curl openssh-client tini build-base && \
     pip install git+https://github.com/ansible/ansible.git@devel && \
     curl -sSfL "https://github.com/ansible-semaphore/semaphore/releases/download/v$SEMAPHORE_VERSION/semaphore_$SEMAPHORE_ARCH" > /usr/bin/semaphore && \
     chmod +x /usr/bin/semaphore && mkdir -p /etc/semaphore/playbooks
